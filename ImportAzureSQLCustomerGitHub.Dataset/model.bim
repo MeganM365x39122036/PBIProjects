@@ -209,19 +209,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "rowguid",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "7276326b-2e9c-407c-93e3-ac23949e506c",
-            "sourceColumn": "rowguid",
-            "summarizeBy": "none"
-          },
-          {
             "name": "ModifiedDate",
             "annotations": [
               {
@@ -258,7 +245,7 @@
                 "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
                 "    SalesLT_Customer = Source{[Schema=\"SalesLT\",Item=\"Customer\"]}[Data],",
                 "    #\"Filtered Rows\" = Table.SelectRows(SalesLT_Customer, each ([CustomerID] = 1 or [CustomerID] = 2 or [CustomerID] = 3 or [CustomerID] = 4 or [CustomerID] = 5)),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"PasswordHash\", \"PasswordSalt\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"PasswordHash\", \"PasswordSalt\", \"rowguid\"})",
                 "in",
                 "    #\"Removed Columns\""
               ],

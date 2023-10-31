@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\"]"
+        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\",\"testTableAdmin\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -667,65 +667,6 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "MeganTable1031",
-        "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Column1",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "e1089f25-2bfb-4144-af88-9e909d61e473",
-            "sourceColumn": "Column1",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Column2",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "942516d0-5693-47ee-a1a3-7de6c8995075",
-            "sourceColumn": "Column2",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "aea1c446-ff7a-4044-8be8-1c52f3579f78",
-        "partitions": [
-          {
-            "name": "MeganTable1031",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSpJLS4xVIrViVYygvKMwDxjKM9YKTYWAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t, Column2 = _t]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", Int64.Type}, {\"Column2\", type text}})",
-                "in",
-                "    #\"Changed Type\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
         "name": "AdminTableDemo",
         "annotations": [
           {
@@ -774,8 +715,127 @@
             "source": {
               "expression": [
                 "let",
-                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy85ViYwE=\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
+                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy88FMQ7BMajFQIhYA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
                 "    更改的类型 = Table.TransformColumnTypes(源,{{\"Key\", Int64.Type}, {\"Value\", type text}})",
+                "in",
+                "    更改的类型"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MeganTable1031",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "导航"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e1089f25-2bfb-4144-af88-9e909d61e473",
+            "sourceColumn": "Column1",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Column2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "942516d0-5693-47ee-a1a3-7de6c8995075",
+            "sourceColumn": "Column2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "aea1c446-ff7a-4044-8be8-1c52f3579f78",
+        "partitions": [
+          {
+            "name": "MeganTable1031",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSpJLS4xVIrViVYygvKMwDxjKM8YzDOB8kyUYmMB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t, Column2 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", Int64.Type}, {\"Column2\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "testTableAdmin",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "导航"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "col",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e31cd0d7-be6e-437a-a702-37aa8f69b2c6",
+            "sourceColumn": "col",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b3190a36-eb51-4cf3-bca9-994b64d46aaf",
+            "sourceColumn": "name",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "4592b641-6ed6-4ad3-beab-ae97ae6bce0a",
+        "partitions": [
+          {
+            "name": "testTableAdmin",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSAeJYnWglIyDLSCk2FgA=\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [col = _t, name = _t]),",
+                "    更改的类型 = Table.TransformColumnTypes(源,{{\"col\", Int64.Type}, {\"name\", Int64.Type}})",
                 "in",
                 "    更改的类型"
               ],

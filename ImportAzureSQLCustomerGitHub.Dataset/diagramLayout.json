@@ -28,6 +28,8 @@
           },
           "nodeIndex": "MeganTable1031",
           "nodeLineageTag": "aea1c446-ff7a-4044-8be8-1c52f3579f78",
+          "nodeIndex": "AdminTableDemo",
+          "nodeLineageTag": "f85e23f8-34a1-4028-93bf-e5dd4822b0ae",
           "size": {
             "height": 128,
             "width": 234

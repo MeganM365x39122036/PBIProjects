@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\",\"testTableAdmin\"]"
+        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\",\"testTableAdmin\",\"SalesLT CustomerAddress\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -46,6 +46,19 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_761f71ca-9511-433f-bce1-2e0c7d2da933"
+      },
+      {
+        "name": "dc4ea9cf-e428-4d77-9567-8b51e328ae4d",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "CustomerID",
+        "fromTable": "SalesLT CustomerAddress",
+        "toColumn": "CustomerID",
+        "toTable": "SalesLT Customer"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -71,7 +84,7 @@
             "formatString": "0",
             "lineageTag": "9577defa-b34d-4c0e-9c42-42f9dd618f64",
             "sourceColumn": "CustomerID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "NameStyle",
@@ -826,6 +839,93 @@
                 "    更改的类型 = Table.TransformColumnTypes(源,{{\"col\", Int64.Type}, {\"name\", Int64.Type}})",
                 "in",
                 "    更改的类型"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SalesLT CustomerAddress",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "CustomerID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e2c86490-11bc-4dc3-b49f-89c7accf1f1d",
+            "sourceColumn": "CustomerID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AddressID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "10cdca5b-39fb-4298-b4a8-0d9d035584ca",
+            "sourceColumn": "AddressID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "AddressType",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "96387721-1c06-4100-91d6-9340d6b9d13d",
+            "sourceColumn": "AddressType",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rowguid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c29ef66-ee72-4eaf-996b-d22372fb0109",
+            "sourceColumn": "rowguid",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "fcb83d7a-dee1-4fb4-9c53-f24db5e4aa79",
+        "partitions": [
+          {
+            "name": "SalesLT CustomerAddress",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
+                "    SalesLT_CustomerAddress = Source{[Schema=\"SalesLT\",Item=\"CustomerAddress\"]}[Data],",
+                "    #\"Removed Columns\" = Table.RemoveColumns(SalesLT_CustomerAddress,{\"ModifiedDate\"})",
+                "in",
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }

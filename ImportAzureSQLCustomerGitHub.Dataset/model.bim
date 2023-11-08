@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\",\"testTableAdmin\",\"SalesLT CustomerAddress\"]"
+        "value": "[\"SalesLT Customer\",\"MeganTable1031\",\"AdminTableDemo\",\"testTableAdmin\",\"SalesLT CustomerAddress\",\"SalesLT SalesOrderHeader\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.122.746.0 (23.10)"
+        "value": "2.122.1066.0 (23.10)"
       },
       {
         "name": "PBI_ProTooling",
@@ -57,6 +57,21 @@
         ],
         "fromColumn": "CustomerID",
         "fromTable": "SalesLT CustomerAddress",
+        "toColumn": "CustomerID",
+        "toTable": "SalesLT Customer"
+      },
+      {
+        "name": "86700c5d-bd53-4d37-ab8c-9e9d0cf59c75",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "CustomerID",
+        "fromTable": "SalesLT SalesOrderHeader",
         "toColumn": "CustomerID",
         "toTable": "SalesLT Customer"
       }
@@ -286,7 +301,6 @@
             ],
             "dataCategory": "PaddedDateTableDates",
             "dataType": "dateTime",
-            "formatString": "General Date",
             "isHidden": true,
             "isNameInferred": true,
             "lineageTag": "6f44f863-fc45-4d68-90cf-8eb58373a53f",
@@ -309,7 +323,6 @@
             "dataCategory": "Years",
             "dataType": "int64",
             "expression": "YEAR([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "1b3db7c8-56db-44a2-93e3-41c6f021be38",
             "summarizeBy": "none",
@@ -330,7 +343,6 @@
             "dataCategory": "MonthOfYear",
             "dataType": "int64",
             "expression": "MONTH([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "5c9f05e8-caf3-42d9-859c-a470dd0baf4c",
             "summarizeBy": "none",
@@ -372,7 +384,6 @@
             "dataCategory": "QuarterOfYear",
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "e0e0d165-357e-487b-93d2-ec00e6ba9617",
             "summarizeBy": "none",
@@ -414,7 +425,6 @@
             "dataCategory": "DayOfMonth",
             "dataType": "int64",
             "expression": "DAY([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "47235b57-8445-44dd-a038-c8c6544f1d80",
             "summarizeBy": "none",
@@ -492,7 +502,6 @@
             ],
             "dataCategory": "PaddedDateTableDates",
             "dataType": "dateTime",
-            "formatString": "General Date",
             "isHidden": true,
             "isNameInferred": true,
             "lineageTag": "f2d520b1-436e-4761-9bc1-7ed71f50cbb0",
@@ -515,7 +524,6 @@
             "dataCategory": "Years",
             "dataType": "int64",
             "expression": "YEAR([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "4a6565df-9874-499e-9e5f-bc8e513ddce9",
             "summarizeBy": "none",
@@ -536,7 +544,6 @@
             "dataCategory": "MonthOfYear",
             "dataType": "int64",
             "expression": "MONTH([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "8037aa60-7fb4-433a-b399-74ae5233bb20",
             "summarizeBy": "none",
@@ -578,7 +585,6 @@
             "dataCategory": "QuarterOfYear",
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "c224d86b-8a2e-49a2-aa16-7d22acf57b17",
             "summarizeBy": "none",
@@ -620,7 +626,6 @@
             "dataCategory": "DayOfMonth",
             "dataType": "int64",
             "expression": "DAY([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "954891df-da78-427a-9287-20b97158dc0a",
             "summarizeBy": "none",
@@ -678,6 +683,61 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "AdminTableDemo",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b87410fc-3be6-4a4d-86c7-ada02ca55ef9",
+            "sourceColumn": "Key",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "63327c8a-95ad-499d-ad7b-45ebe831aea5",
+            "sourceColumn": "Value",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f85e23f8-34a1-4028-93bf-e5dd4822b0ae",
+        "partitions": [
+          {
+            "name": "AdminTableDemo",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy88FMQ7BMajFQIhYA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
+                "    更改的类型 = Table.TransformColumnTypes(源,{{\"Key\", Int64.Type}, {\"Value\", type text}})",
+                "in",
+                "    更改的类型"
+              ],
+              "type": "m"
+            }
+          }
+        ]
       },
       {
         "name": "MeganTable1031",
@@ -924,6 +984,302 @@
                 "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
                 "    SalesLT_CustomerAddress = Source{[Schema=\"SalesLT\",Item=\"CustomerAddress\"]}[Data],",
                 "    #\"Removed Columns\" = Table.RemoveColumns(SalesLT_CustomerAddress,{\"ModifiedDate\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+      },
+      {
+        "name": "SalesLT SalesOrderHeader",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a97f5650-2bd1-4cb7-89a2-7f97dd6616d9",
+            "sourceColumn": "SalesOrderID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "RevisionNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "827954ea-f799-4d05-976d-30e1a316eae3",
+            "sourceColumn": "RevisionNumber",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "53e2903c-3feb-4b1d-9447-74e6fdc71a81",
+            "sourceColumn": "Status",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "OnlineOrderFlag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "36fbb8ca-b09c-4f88-b258-698a33df1c12",
+            "sourceColumn": "OnlineOrderFlag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SalesOrderNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "59eeea54-a12f-4038-b611-0fad104428e1",
+            "sourceColumn": "SalesOrderNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PurchaseOrderNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5902d7c3-b28a-430a-bc90-de437b6ff5d6",
+            "sourceColumn": "PurchaseOrderNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "AccountNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "da794800-fe32-4e0a-8892-04f8bd06814f",
+            "sourceColumn": "AccountNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CustomerID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b8390540-0642-42d0-9c37-c6b525be7e07",
+            "sourceColumn": "CustomerID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ShipToAddressID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4f681ec8-1eec-49ac-977f-dafde74445c7",
+            "sourceColumn": "ShipToAddressID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "BillToAddressID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c5aaa6ae-7cbc-46d4-ac7c-c827a4822dd3",
+            "sourceColumn": "BillToAddressID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "ShipMethod",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "47c407ad-eadf-4960-9040-af978cfe0887",
+            "sourceColumn": "ShipMethod",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CreditCardApprovalCode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e8641d33-2c3c-4fd8-a43b-cdebfdf6b803",
+            "sourceColumn": "CreditCardApprovalCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SubTotal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "dataType": "decimal",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
+            "lineageTag": "3a9eb64f-20d2-4430-9ffe-b65243196b67",
+            "sourceColumn": "SubTotal",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "TaxAmt",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "dataType": "decimal",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
+            "lineageTag": "9f7f6a3a-d9b3-4f59-af48-4cb494a08eb5",
+            "sourceColumn": "TaxAmt",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Freight",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "dataType": "decimal",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
+            "lineageTag": "4753d279-0195-42b2-b9d4-fd556483ed38",
+            "sourceColumn": "Freight",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "TotalDue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "dataType": "decimal",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
+            "lineageTag": "fbf10374-bff3-4222-a915-d0e7752efe26",
+            "sourceColumn": "TotalDue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Comment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8090d6b2-82b2-49a8-925a-eaa01e23162d",
+            "sourceColumn": "Comment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rowguid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4b005118-3c5a-437a-8e2e-13416514b805",
+            "sourceColumn": "rowguid",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e7ad2364-3968-4a19-8ce9-32dd0593c738",
+        "partitions": [
+          {
+            "name": "SalesLT SalesOrderHeader",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
+                "    SalesLT_SalesOrderHeader = Source{[Schema=\"SalesLT\",Item=\"SalesOrderHeader\"]}[Data],",
+                "    #\"Removed Columns\" = Table.RemoveColumns(SalesLT_SalesOrderHeader,{\"OrderDate\", \"DueDate\", \"ShipDate\", \"ModifiedDate\"})",
                 "in",
                 "    #\"Removed Columns\""
               ],

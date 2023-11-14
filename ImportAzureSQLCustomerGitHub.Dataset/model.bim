@@ -20,7 +20,7 @@
       },
       {
         "name": "PBI_RemovedChildren",
-        "value": "[{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"fcb83d7a-dee1-4fb4-9c53-f24db5e4aa79\",\"fromColumnLocalLineageTag\":\"e2c86490-11bc-4dc3-b49f-89c7accf1f1d\",\"toTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"toColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\"}},\"objectType\":\"Relationship\"}]"
+        "value": "[{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"fcb83d7a-dee1-4fb4-9c53-f24db5e4aa79\",\"fromColumnLocalLineageTag\":\"e2c86490-11bc-4dc3-b49f-89c7accf1f1d\",\"toTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"toColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\"}},\"objectType\":\"Relationship\"},{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"fromColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\",\"toTableLocalLineageTag\":\"e7ad2364-3968-4a19-8ce9-32dd0593c738\",\"toColumnLocalLineageTag\":\"b8390540-0642-42d0-9c37-c6b525be7e07\"}},\"objectType\":\"Relationship\"}]"
       }
     ],
     "culture": "zh-CN",
@@ -44,32 +44,12 @@
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
     "relationships": [
       {
-        "name": "5c46d3ba-3837-4af7-b82d-a0309e81c091",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "CustomerID",
-        "fromTable": "SalesLT CustomerAddress",
-        "toColumn": "CustomerID",
-        "toTable": "SalesLT Customer"
-      },
-      {
-        "name": "b63d8bce-bf85-4598-af0c-f512c66f8804",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "crossFilteringBehavior": "bothDirections",
-        "fromCardinality": "one",
-        "fromColumn": "CustomerID",
+        "name": "fa890981-50d6-4ea6-9380-f34236c1bb80",
+        "fromColumn": "ModifiedDate",
         "fromTable": "SalesLT Customer",
-        "toColumn": "CustomerID",
-        "toTable": "SalesLT SalesOrderHeader"
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -80,6 +60,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -95,7 +79,7 @@
             "formatString": "0",
             "lineageTag": "9577defa-b34d-4c0e-9c42-42f9dd618f64",
             "sourceColumn": "CustomerID",
-            "summarizeBy": "none"
+            "summarizeBy": "count"
           },
           {
             "name": "NameStyle",
@@ -227,6 +211,70 @@
             "lineageTag": "60d4971a-ca06-48ce-ba7b-586b9b4f817d",
             "sourceColumn": "Phone",
             "summarizeBy": "none"
+          },
+          {
+            "name": "PasswordHash",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9dad022a-76db-49a7-81ae-71e35d30cd8c",
+            "sourceColumn": "PasswordHash",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PasswordSalt",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "83435599-f142-4827-9dd8-7d9f9523ef37",
+            "sourceColumn": "PasswordSalt",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rowguid",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "99988e50-babe-486e-95ae-f15c6cb4dc88",
+            "sourceColumn": "rowguid",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ModifiedDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "2ffd3748-b222-406a-a9db-76be17416e9e",
+            "sourceColumn": "ModifiedDate",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "日期层次结构",
+                  "table": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815"
+                },
+                "isDefault": true,
+                "relationship": "fa890981-50d6-4ea6-9380-f34236c1bb80"
+              }
+            ]
           }
         ],
         "lineageTag": "3bb2b7bb-6203-40e6-be60-99c9e465e484",
@@ -239,10 +287,9 @@
                 "let",
                 "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
                 "    SalesLT_Customer = Source{[Schema=\"SalesLT\",Item=\"Customer\"]}[Data],",
-                "    #\"Filtered Rows\" = Table.SelectRows(SalesLT_Customer, each ([CustomerID] = 1 or [CustomerID] = 2 or [CustomerID] = 3 or [CustomerID] = 4 or [CustomerID] = 5)),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"PasswordHash\", \"PasswordSalt\", \"rowguid\", \"ModifiedDate\"})",
+                "    #\"Filtered Rows\" = Table.SelectRows(SalesLT_Customer, each ([CustomerID] = 1 or [CustomerID] = 2 or [CustomerID] = 3 or [CustomerID] = 4 or [CustomerID] = 5))",
                 "in",
-                "    #\"Removed Columns\""
+                "    #\"Filtered Rows\""
               ],
               "type": "m"
             }
@@ -455,61 +502,6 @@
         ]
       },
       {
-        "name": "AdminTableDemo",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "b87410fc-3be6-4a4d-86c7-ada02ca55ef9",
-            "sourceColumn": "Key",
-            "summarizeBy": "count"
-          },
-          {
-            "name": "Value",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "63327c8a-95ad-499d-ad7b-45ebe831aea5",
-            "sourceColumn": "Value",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "f85e23f8-34a1-4028-93bf-e5dd4822b0ae",
-        "partitions": [
-          {
-            "name": "AdminTableDemo",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy88FMQ7BMajFQIhYA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
-                "    更改的类型 = Table.TransformColumnTypes(源,{{\"Key\", Int64.Type}, {\"Value\", type text}})",
-                "in",
-                "    更改的类型"
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
         "name": "MeganTable1031",
         "annotations": [
           {
@@ -558,6 +550,61 @@
                 "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", Int64.Type}, {\"Column2\", type text}})",
                 "in",
                 "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "AdminTableDemo",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b87410fc-3be6-4a4d-86c7-ada02ca55ef9",
+            "sourceColumn": "Key",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "63327c8a-95ad-499d-ad7b-45ebe831aea5",
+            "sourceColumn": "Value",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f85e23f8-34a1-4028-93bf-e5dd4822b0ae",
+        "partitions": [
+          {
+            "name": "AdminTableDemo",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy88FMQ7BMajFQIhYA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
+                "    更改的类型 = Table.TransformColumnTypes(源,{{\"Key\", Int64.Type}, {\"Value\", type text}})",
+                "in",
+                "    更改的类型"
               ],
               "type": "m"
             }
@@ -823,7 +870,7 @@
             "formatString": "0",
             "lineageTag": "b8390540-0642-42d0-9c37-c6b525be7e07",
             "sourceColumn": "CustomerID",
-            "summarizeBy": "none"
+            "summarizeBy": "count"
           },
           {
             "name": "ShipToAddressID",
@@ -996,6 +1043,207 @@
             }
           }
         ]
+      },
+      {
+        "name": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "d994b1f0-e6d7-4b2b-95bf-cd5ac0e56bc9",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "年",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "da398370-178d-403d-a7c6-2e714d60c3d7",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "f7c550db-633e-4f87-aefd-2732288bad51",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "月份",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "e529d244-d9b9-4233-802f-c711fe664fdd",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "9b8c3b04-03a8-4dcc-9b9e-79c8ab0fbb49",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "季度",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"季度 \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "ade3b75d-8d60-40cf-b4a3-5a760e415107",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "日",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "4f0a09db-4e4f-4593-ae5d-43b61daa4321",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "日期层次结构",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "年",
+                "column": "年",
+                "lineageTag": "763224b9-e530-44d8-8e64-54dbefa92df6",
+                "ordinal": 0
+              },
+              {
+                "name": "季度",
+                "column": "季度",
+                "lineageTag": "b7a8d51e-445c-480e-a816-86cd6e12dbab",
+                "ordinal": 1
+              },
+              {
+                "name": "月份",
+                "column": "月份",
+                "lineageTag": "ac94fd3c-4ac9-439d-9f8b-28be05070622",
+                "ordinal": 2
+              },
+              {
+                "name": "日",
+                "column": "日",
+                "lineageTag": "62c7aed6-2767-460c-9480-c346bab4d7a8",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "329df00d-28f1-403e-bd36-bb8b4a9b46f6"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "1152170c-1e4a-4927-af60-224551c7c262",
+        "partitions": [
+          {
+            "name": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('SalesLT Customer'[ModifiedDate])), 1, 1), Date(Year(MAX('SalesLT Customer'[ModifiedDate])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
       }
     ]
   }

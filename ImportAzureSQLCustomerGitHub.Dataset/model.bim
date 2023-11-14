@@ -20,7 +20,7 @@
       },
       {
         "name": "PBI_RemovedChildren",
-        "value": "[{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"e7ad2364-3968-4a19-8ce9-32dd0593c738\",\"fromColumnLocalLineageTag\":\"b8390540-0642-42d0-9c37-c6b525be7e07\",\"toTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"toColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\"}},\"objectType\":\"Relationship\"},{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"fcb83d7a-dee1-4fb4-9c53-f24db5e4aa79\",\"fromColumnLocalLineageTag\":\"e2c86490-11bc-4dc3-b49f-89c7accf1f1d\",\"toTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"toColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\"}},\"objectType\":\"Relationship\"}]"
+        "value": "[{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"e7ad2364-3968-4a19-8ce9-32dd0593c738\",\"fromColumnLocalLineageTag\":\"b8390540-0642-42d0-9c37-c6b525be7e07\",\"toTableLocalLineageTag\":\"3bb2b7bb-6203-40e6-be60-99c9e465e484\",\"toColumnLocalLineageTag\":\"9577defa-b34d-4c0e-9c42-42f9dd618f64\"}},\"objectType\":\"Relationship\"}]"
       }
     ],
     "culture": "zh-CN",
@@ -42,6 +42,21 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "5c46d3ba-3837-4af7-b82d-a0309e81c091",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "CustomerID",
+        "fromTable": "SalesLT CustomerAddress",
+        "toColumn": "CustomerID",
+        "toTable": "SalesLT Customer"
+      }
+    ],
     "sourceQueryCulture": "en-GB",
     "tables": [
       {
@@ -65,7 +80,7 @@
             "formatString": "0",
             "lineageTag": "9577defa-b34d-4c0e-9c42-42f9dd618f64",
             "sourceColumn": "CustomerID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "NameStyle",
@@ -615,7 +630,7 @@
             "formatString": "0",
             "lineageTag": "e2c86490-11bc-4dc3-b49f-89c7accf1f1d",
             "sourceColumn": "CustomerID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "AddressID",

@@ -795,61 +795,6 @@
         ]
       },
       {
-        "name": "AdminTableDemo",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "b87410fc-3be6-4a4d-86c7-ada02ca55ef9",
-            "sourceColumn": "Key",
-            "summarizeBy": "count"
-          },
-          {
-            "name": "Value",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "63327c8a-95ad-499d-ad7b-45ebe831aea5",
-            "sourceColumn": "Value",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "f85e23f8-34a1-4028-93bf-e5dd4822b0ae",
-        "partitions": [
-          {
-            "name": "AdminTableDemo",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    源 = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlTSUSopL04sUYrViVYyAvLy88FMQ7BMajFQIhYA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Key = _t, Value = _t]),",
-                "    更改的类型 = Table.TransformColumnTypes(源,{{\"Key\", Int64.Type}, {\"Value\", type text}})",
-                "in",
-                "    更改的类型"
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
         "name": "testTableAdmin",
         "annotations": [
           {
@@ -991,8 +936,6 @@
             }
           }
         ]
-      }
-    ]
       },
       {
         "name": "SalesLT SalesOrderHeader",

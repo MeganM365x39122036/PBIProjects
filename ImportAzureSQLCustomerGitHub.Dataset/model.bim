@@ -42,16 +42,6 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
-    "relationships": [
-      {
-        "name": "fa890981-50d6-4ea6-9380-f34236c1bb80",
-        "fromColumn": "ModifiedDate",
-        "fromTable": "SalesLT Customer",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815"
-      }
-    ],
     "sourceQueryCulture": "en-GB",
     "tables": [
       {
@@ -250,31 +240,6 @@
             "lineageTag": "99988e50-babe-486e-95ae-f15c6cb4dc88",
             "sourceColumn": "rowguid",
             "summarizeBy": "none"
-          },
-          {
-            "name": "ModifiedDate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "lineageTag": "2ffd3748-b222-406a-a9db-76be17416e9e",
-            "sourceColumn": "ModifiedDate",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "日期层次结构",
-                  "table": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815"
-                },
-                "isDefault": true,
-                "relationship": "fa890981-50d6-4ea6-9380-f34236c1bb80"
-              }
-            ]
           }
         ],
         "lineageTag": "3bb2b7bb-6203-40e6-be60-99c9e465e484",
@@ -287,9 +252,10 @@
                 "let",
                 "    Source = Sql.Database(\"azuresqlserver0517.database.windows.net\", \"sampleDB\"),",
                 "    SalesLT_Customer = Source{[Schema=\"SalesLT\",Item=\"Customer\"]}[Data],",
-                "    #\"Filtered Rows\" = Table.SelectRows(SalesLT_Customer, each ([CustomerID] = 1 or [CustomerID] = 2 or [CustomerID] = 3 or [CustomerID] = 4 or [CustomerID] = 5))",
+                "    #\"Filtered Rows\" = Table.SelectRows(SalesLT_Customer, each ([CustomerID] = 1 or [CustomerID] = 2 or [CustomerID] = 3 or [CustomerID] = 4 or [CustomerID] = 5)),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"ModifiedDate\"})",
                 "in",
-                "    #\"Filtered Rows\""
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
@@ -1043,207 +1009,6 @@
             }
           }
         ]
-      },
-      {
-        "name": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "d994b1f0-e6d7-4b2b-95bf-cd5ac0e56bc9",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "年",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "isHidden": true,
-            "lineageTag": "da398370-178d-403d-a7c6-2e714d60c3d7",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "isHidden": true,
-            "lineageTag": "f7c550db-633e-4f87-aefd-2732288bad51",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "月份",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "e529d244-d9b9-4233-802f-c711fe664fdd",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "isHidden": true,
-            "lineageTag": "9b8c3b04-03a8-4dcc-9b9e-79c8ab0fbb49",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "季度",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"季度 \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "ade3b75d-8d60-40cf-b4a3-5a760e415107",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "日",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "isHidden": true,
-            "lineageTag": "4f0a09db-4e4f-4593-ae5d-43b61daa4321",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "日期层次结构",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "年",
-                "column": "年",
-                "lineageTag": "763224b9-e530-44d8-8e64-54dbefa92df6",
-                "ordinal": 0
-              },
-              {
-                "name": "季度",
-                "column": "季度",
-                "lineageTag": "b7a8d51e-445c-480e-a816-86cd6e12dbab",
-                "ordinal": 1
-              },
-              {
-                "name": "月份",
-                "column": "月份",
-                "lineageTag": "ac94fd3c-4ac9-439d-9f8b-28be05070622",
-                "ordinal": 2
-              },
-              {
-                "name": "日",
-                "column": "日",
-                "lineageTag": "62c7aed6-2767-460c-9480-c346bab4d7a8",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "329df00d-28f1-403e-bd36-bb8b4a9b46f6"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "1152170c-1e4a-4927-af60-224551c7c262",
-        "partitions": [
-          {
-            "name": "LocalDateTable_501763cd-5419-479e-987c-8f1ff78f7815",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('SalesLT Customer'[ModifiedDate])), 1, 1), Date(Year(MAX('SalesLT Customer'[ModifiedDate])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
       }
     ]
   }

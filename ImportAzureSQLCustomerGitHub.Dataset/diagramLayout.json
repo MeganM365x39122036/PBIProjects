@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 295,
-            "y": 371
+            "x": 0,
+            "y": 458
           },
           "nodeIndex": "SalesLT CustomerAddress",
           "nodeLineageTag": "fcb83d7a-dee1-4fb4-9c53-f24db5e4aa79",

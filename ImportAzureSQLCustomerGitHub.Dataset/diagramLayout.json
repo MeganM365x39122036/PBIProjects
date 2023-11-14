@@ -75,8 +75,8 @@
         },
         {
           "location": {
-            "x": 304,
-            "y": 326
+            "x": 736,
+            "y": 529
           },
           "nodeIndex": "SalesLT SalesOrderHeader",
           "nodeLineageTag": "e7ad2364-3968-4a19-8ce9-32dd0593c738",
